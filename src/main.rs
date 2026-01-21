@@ -32,18 +32,17 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
             retry_on_failure,
         } => {
-            // handlers::add_tunnel(
-            //     name,
-            //     local_port,
-            //     remote_host,
-            //     remote_port,
-            //     ssh_host,
-            //     ssh_port,
-            //     ssh_user,
-            //     ssh_key_path,
-            //     retry_on_failure,
-            // )?;
-            // TO DO, Error
+            handlers::add_tunnel(
+                name.clone(),
+                *local_port,
+                remote_host.clone(),
+                *remote_port,
+                ssh_host.clone(),
+                *ssh_port,
+                ssh_user.clone(),
+                ssh_key_path.clone(),
+                *retry_on_failure,
+            )?;
         }
         // Start a tunnel with tunnel's name
         // Future work: grouping the tunnel, and allow start with group name

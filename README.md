@@ -1,10 +1,10 @@
-# 🚇 RTM - SSH Tunnel Manager
+# 🚇 RTun - Rust SSH Tunnel Manager
 
 > A lightweight CLI tool to manage SSH tunnels, written in Rust. Inspired by [mole](https://github.com/davrodpin/mole). This is a self-learning project, just feel free to use it. Also, welcome to you to comment of my code.
 
-**RTM** (Rust Tunnel Manager) is a command-line interface tool designed to simplify the creation and management of SSH local port forwarding tunnels.
+**RTun** (Rust SSH Tunnel Manager) is a command-line interface tool designed to simplify the creation and management of SSH local port forwarding tunnels.
 
-This project was created as a hands-on exercise to master **Rust**, focusing on:
+This project was created as a hands-on exercise to **Rust**, focusing on:
 *   CLI application architecture
 *   Asynchronous I/O (`async`/`await`)
 *   Configuration management
@@ -14,7 +14,7 @@ This project was created as a hands-on exercise to master **Rust**, focusing on:
 
 **Current State: Work In Progress (WIP)**
 
-The actual SSH connection logic is implemented, for next step I will implement the group function. Means label some tunnels as a group, and up with group
+The SSH connection function is finished, and the next step is allow starting a tunnel in background and then check the running SSH tunnel with ```stats``` command
 
 ## ✨ Features
 
@@ -23,6 +23,7 @@ The actual SSH connection logic is implemented, for next step I will implement t
 - [x] **Config Management**: Persistently save, load, list, delete tunnel configurations (TOML format).
 - [X] **SSH Connection**: Establish secure SSH connections using `russh` & `tokio`.
 - [X] **Port Forwarding**: Support for local port forwarding.
+- [X] **Reactor Structure**: Separate the definition of the command to `handler`
 - [ ] **Run in background**: Make the ssh tunnel run in background, that allow create multi tunnel in single CLI
 - [ ] **Grouping**: Support create a group for tunnel, that can allow up with group
 
@@ -64,10 +65,10 @@ cargo install --path .
 ### During development, you can run the tool using cargo run.
 ### 1. Add a Tunnel
 Save a new server configuration to your local config file.
-#### Syntax: rtm add
-```rtm add```
+#### Syntax: rtun add
+```rtun add```
 #### You can type rtm add with parameters
-```rtm add {name} {local_port} {remote_host} {remote_port} {ssh_host} 22 ec2-user "{ssh-key-path}" false```
+```rtun add {name} {local_port} {remote_host} {remote_port} {ssh_host} 22 ec2-user "{ssh-key-path}" false```
 #### Or you can edit config.toml directly
 ```Format
 [tunnels.Testing]
@@ -85,19 +86,20 @@ retry_on_failure = false
 ### 2. Start a Tunnel
 Start the SSH tunnel using the saved configuration name.
 #### Syntax: rtm up <NAME>
-```rtm up Testing```
+```rtun up Testing```
 
 ### 3. List all Tunnel
 Start the SSH tunnel using the saved configuration name.
 #### Syntax: rtm ls
-```rtm ls```
+```rtun ls```
 
 ## 📂 Project Structure
 ```
 src/
-├── main.rs      # Entry point: Orchestrates CLI and Config modules.
 ├── cli.rs       # Interface: Defines command-line arguments and enums.
 └── config.rs    # Data Layer: Handles Config struct definitions and File I/O.
+├── handlers.rs  # Define the command
+├── main.rs      # Entry point: Orchestrates CLI and Config modules.
 └── ssh.rs       # Handle all SSH connection.
 ```
 

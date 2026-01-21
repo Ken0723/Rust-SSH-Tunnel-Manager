@@ -23,7 +23,6 @@ The SSH connection function is finished, and the next step is allow starting a t
 - [x] **Config Management**: Persistently save, load, list, delete tunnel configurations (TOML format).
 - [X] **SSH Connection**: Establish secure SSH connections using `russh` & `tokio`.
 - [X] **Port Forwarding**: Support for local port forwarding.
-- [X] **Reactor Structure**: Separate the definition of the command to `handler`
 - [ ] **Run in background**: Make the ssh tunnel run in background, that allow create multi tunnel in single CLI
 - [ ] **Grouping**: Support create a group for tunnel, that can allow up with group
 

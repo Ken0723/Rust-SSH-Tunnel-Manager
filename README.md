@@ -47,7 +47,7 @@ winget install NASM.NASM
 ### Building from Source
 ```
 1. Clone the repository
-git clone https://github.com/Ken0723/SSH-Tunnel-Manager.git
+git clone https://github.com/Ken0723/Rust-SSH-Tunnel-Manager.git
 cd SSH-Tunnel-Manager
 
 2. Update cargo

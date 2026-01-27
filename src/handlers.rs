@@ -125,7 +125,7 @@ pub async fn start_tunnel(name: &str) -> Result<(), Box<dyn Error>> {
 }
 
 pub fn list_tunnels() -> Result<(), Box<dyn Error>> {
-    match Config::load("config.toml") {
+    match Config::load() {
         Ok(read_data) => {
             let mut list: Vec<_> = read_data.tunnels.values().collect();
             list.sort_by_key(|t| &t.name);

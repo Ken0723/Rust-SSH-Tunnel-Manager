@@ -48,7 +48,7 @@ winget install NASM.NASM
 ```
 1. Clone the repository
 git clone https://github.com/Ken0723/Rust-SSH-Tunnel-Manager.git
-cd SSH-Tunnel-Manager
+cd Rust-SSH-Tunnel-Manager
 
 2. Update cargo
 cargo update

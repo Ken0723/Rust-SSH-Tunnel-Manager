@@ -24,8 +24,36 @@ pub enum Commands {
 
         retry_on_failure: Option<bool>,
     },
+    // Start a tunnel
+    // TODO:
+    // Future work: allow start a group of tunnel
     Up {
         name: String,
     },
+    // List all added tunnel
+    // TODO:
+    // Future work, to listing out all started tunnel,
+    // and that allow typing 'rtun ls -a' to list out all tunnel,
+    // include non-started
     Ls {},
+    
+    // TODO:
+    // Remove a tunnel
+    // Rm {},
+
+    // TODO:
+    // Like Docker stats, keep checking the started tunnel
+    // Stats {},
+
+    // TODO:
+    // Add group
+    // Addgp {},
+
+    // TODO:
+    // Remove group (with all child tunnel)
+    // Rmgp {},
+
+    // TODO:
+    // Assign tunnel to a group
+    // Assgp {},
 }

@@ -5,9 +5,7 @@ mod ssh;
 
 use clap::Parser;
 use cli::{Cli, Commands};
-use comfy_table::Table;
-use config::{Config, Tunnel};
-use inquire::{required, Confirm, CustomType, Text};
+use config::Tunnel;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -45,17 +43,18 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             )?;
         }
         // Start a tunnel with tunnel's name
-        // Future work: grouping the tunnel, and allow start with group name
+        // Future work: after grouping the tunnel, and allow start with group name
         Commands::Up { name } => {
             handlers::start_tunnel(&name).await?;
         }
         // List out all tunnel which in config.toml
         Commands::Ls {} => {
             handlers::list_tunnels()?;
-        }
-        // Future work: new command "stats" like docker stats keep checking the SSH status
-        //              remove a tunnel with group name or name, or maybe remove a tunnel from
-        //              group
+        } // Commands::Rm {} => {}
+          // Commands::Stats {} => {}
+          // Commands::Addgp {} => {}
+          // Commands::Rmgp {} => {}
+          // Commands::Assgp {} => {}
     }
     Ok(())
 }

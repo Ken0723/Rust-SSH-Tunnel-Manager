@@ -124,6 +124,10 @@ pub async fn start_tunnel(name: &str) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
+pub async fn stop_tunnel(name: &str) -> Result<(), Box<dyn Error>> {
+    Ok(())
+}
+
 pub fn list_tunnels() -> Result<(), Box<dyn Error>> {
     match Config::load() {
         Ok(read_data) => {

@@ -23,12 +23,10 @@ pub async fn start_tunnel(tunnel: Tunnel) -> Result<(), Box<dyn std::error::Erro
     let config = Arc::new(client::Config::default());
     let sh = Client {};
     let ssh_addr = format!("{}:{}", tunnel.ssh_host, tunnel.ssh_port);
-    println!("🔌 Connecting to SSH: {}", ssh_addr);
 
     let mut session = client::connect(config, ssh_addr, sh).await?;
 
     // Authorization
-    println!("🔌 Authorizing");
     let key_path = match tunnel.ssh_key_path {
         Some(path) => path,
         None => {
@@ -50,12 +48,9 @@ pub async fn start_tunnel(tunnel: Tunnel) -> Result<(), Box<dyn std::error::Erro
     let local_addr = format!("127.0.0.1:{}", &tunnel.local_port);
     let listener = TcpListener::bind(&local_addr).await?;
 
-    println!("🚀 Listening on {}", local_addr);
-
     // Create channel and Streaming
     loop {
         let (stream, ssh_addr) = listener.accept().await?;
-        println!("Connection from {}", ssh_addr);
 
         // Prepare connection conifg
         let shared_session = session.clone();
@@ -87,7 +82,6 @@ pub async fn start_tunnel(tunnel: Tunnel) -> Result<(), Box<dyn std::error::Erro
                 }
             };
 
-            // println!("{:?}", channel);
             let mut channel_stream = channel.into_stream();
             let mut stream = stream;
             // Upload: Stream -> Channel

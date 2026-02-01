@@ -47,7 +47,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         Commands::Up { name } => {
             handlers::start_tunnel(&name).await?;
         }
-        // List out all tunnel which in config.toml
+        Commands::Stop { name } => {
+            handlers::stop_tunnel(&name).await?;
+        } // List out all tunnel which in config.toml
         Commands::Ls {} => {
             handlers::list_tunnels()?;
         } // Commands::Rm {} => {}

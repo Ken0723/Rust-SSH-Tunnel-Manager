@@ -30,13 +30,16 @@ pub enum Commands {
     Up {
         name: String,
     },
+    Stop {
+        name: String,
+    },
+    
     // List all added tunnel
     // TODO:
     // Future work, to listing out all started tunnel,
     // and that allow typing 'rtun ls -a' to list out all tunnel,
     // include non-started
     Ls {},
-    
     // TODO:
     // Remove a tunnel
     // Rm {},
